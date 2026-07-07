@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { MarkdownModule } from 'ngx-markdown';
@@ -17,7 +17,9 @@ import { AppComponent } from './app.component';
     NpnSliderModule,
     MarkdownModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    provideBrowserGlobalErrorListeners()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,98 +3,265 @@
     <div class="row">
       <div class="col-12 col-sm-7">
         <h2>RangeSlider base on NpnSlider</h2>
-        <span>A Multi Range Slider Component</span>
+        <span>A Multi Range Slider Component — Sample Gallery</span>
       </div>
       <div class="col">
-        <a class="white-btn" href="https://github.com/npnm/NpnSlider"><span class="github-icon"></span>Github</a>
+        <a class="white-btn" href="https://github.com/ehsanshrz/rangeSlider"><span class="github-icon"></span>GitHub</a>
       </div>
     </div>
   </div>
 </header>
 <div class="container demo-container">
-  <p>NpnSlider is a multi range slider component using <em>Angular <small>v6.0</small></em>. It can be used either as a
-    multi range or a single range slider. By default, it is a multi range slider.
-  </p>
+  <p>NpnSlider is a multi range slider component using <em>Angular</em>. Below are many usage samples demonstrating
+    its features: multi range, single range, steps, disabled, hidden tooltips, and more.</p>
+
+  <!-- 1. Basic Multi-Range -->
   <div class="examples">
-    <h4>Basic Slider <small><i>(Multi Range)</i></small></h4>
+    <h4>1. Basic Multi-Range Slider</h4>
     <div class="well">
       <div class="well-body">
-        <npn-slider [min]="2006" [max]="2020" (onChange)="onSliderChange($event)">
-        </npn-slider>
-        <div *ngFor="let value of currentValues">
-          {{value}}
-        </div>
-        <p>Selected Values: {{currentValues | json}}</p>
+        <npn-slider [min]="2006" [max]="2020" (onChange)="onSliderChange($event)"></npn-slider>
+        <p>Selected: <strong>{{currentValues | json}}</strong></p>
       </div>
       <div class="code-snippet">
         <span>{{codeSnippetText}}</span>
         <div markdown ngPreserveWhitespaces>
-          ```html
-          &lt;npn-slider [min]="2006" [max]="2020" (onChange)="onSliderChange($event)"&gt;&lt;/npn-slider&gt;
-          ```
+```html
+&lt;npn-slider [min]="2006" [max]="2020" (onChange)="onSliderChange($event)"&gt;&lt;/npn-slider&gt;
+```
         </div>
       </div>
     </div>
   </div>
+
+  <!-- 2. Single Range Slider -->
   <div class="examples">
-    <h4>Single Range Slider</h4>
+    <h4>2. Single Range Slider</h4>
     <div class="well">
       <div class="well-body">
-        <npn-slider [multiRange]="false" [min]="2006" [max]="2020" [minSelected]="2010">
-        </npn-slider>
+        <npn-slider [multiRange]="false" [min]="2006" [max]="2020" [minSelected]="2010"></npn-slider>
       </div>
       <div class="code-snippet">
         <span>{{codeSnippetText}}</span>
         <div markdown ngPreserveWhitespaces>
-          ```html
-          &lt;npn-slider [multiRange]="false" [min]="2006" [max]="2020" [minSelected]="2010"&gt;&lt;/npn-slider&gt;
-          ```
+```html
+&lt;npn-slider [multiRange]="false" [min]="2006" [max]="2020" [minSelected]="2010"&gt;&lt;/npn-slider&gt;
+```
         </div>
       </div>
     </div>
-    <p class="notes">By using <code>multiRange</code> property, you can convert the slider as a single range slider</p>
+    <p class="notes">Use <code>[multiRange]="false"</code> for a single-handle slider.</p>
   </div>
+
+  <!-- 3. Price Range -->
   <div class="examples">
-    <h4>Multi Range Slider - with preselected values</h4>
+    <h4>3. Price Range Slider ($0 – $1000)</h4>
+    <div class="well">
+      <div class="well-body">
+        <npn-slider [min]="0" [max]="1000" [minSelected]="200" [maxSelected]="800" [step]="50"
+          (onChange)="onPriceChange($event)"></npn-slider>
+        <p>Price: <strong>${{priceValues[0]}} – ${{priceValues[1]}}</strong></p>
+      </div>
+      <div class="code-snippet">
+        <span>{{codeSnippetText}}</span>
+        <div markdown ngPreserveWhitespaces>
+```html
+&lt;npn-slider [min]="0" [max]="1000" [minSelected]="200" [maxSelected]="800"
+  [step]="50" (onChange)="onPriceChange($event)"&gt;&lt;/npn-slider&gt;
+```
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Temperature Range -->
+  <div class="examples">
+    <h4>4. Temperature Range (−20°C – 50°C)</h4>
+    <div class="well">
+      <div class="well-body">
+        <npn-slider [min]="-20" [max]="50" [minSelected]="-10" [maxSelected]="30" [step]="5"
+          (onChange)="onTempChange($event)"></npn-slider>
+        <p>Temperature: <strong>{{tempValues[0]}}°C – {{tempValues[1]}}°C</strong></p>
+      </div>
+      <div class="code-snippet">
+        <span>{{codeSnippetText}}</span>
+        <div markdown ngPreserveWhitespaces>
+```html
+&lt;npn-slider [min]="-20" [max]="50" [minSelected]="-10" [maxSelected]="30"
+  [step]="5" (onChange)="onTempChange($event)"&gt;&lt;/npn-slider&gt;
+```
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Percentage Slider -->
+  <div class="examples">
+    <h4>5. Percentage Range (0% – 100%)</h4>
+    <div class="well">
+      <div class="well-body">
+        <npn-slider [min]="0" [max]="100" [minSelected]="20" [maxSelected]="75" [step]="5"
+          [showStepIndicator]="true" (onChange)="onPercentChange($event)"></npn-slider>
+        <p>Range: <strong>{{percentValues[0]}}% – {{percentValues[1]}}%</strong></p>
+      </div>
+      <div class="code-snippet">
+        <span>{{codeSnippetText}}</span>
+        <div markdown ngPreserveWhitespaces>
+```html
+&lt;npn-slider [min]="0" [max]="100" [minSelected]="20" [maxSelected]="75"
+  [step]="5" [showStepIndicator]="true"&gt;&lt;/npn-slider&gt;
+```
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. Year Range with Step Indicator -->
+  <div class="examples">
+    <h4>6. Year Range with Step Indicator</h4>
+    <div class="well">
+      <div class="well-body">
+        <npn-slider [min]="2000" [max]="2025" [minSelected]="2010" [maxSelected]="2023" [step]="1"
+          [showStepIndicator]="true" (onChange)="onYearChange($event)"></npn-slider>
+        <p>Years: <strong>{{yearValues[0]}} – {{yearValues[1]}}</strong></p>
+      </div>
+      <div class="code-snippet">
+        <span>{{codeSnippetText}}</span>
+        <div markdown ngPreserveWhitespaces>
+```html
+&lt;npn-slider [min]="2000" [max]="2025" [minSelected]="2010" [maxSelected]="2023"
+  [step]="1" [showStepIndicator]="true"&gt;&lt;/npn-slider&gt;
+```
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. Single Range - Volume -->
+  <div class="examples">
+    <h4>7. Single Range – Volume (0–100)</h4>
+    <div class="well">
+      <div class="well-body">
+        <npn-slider [multiRange]="false" [min]="0" [max]="100" [minSelected]="60" [step]="10"
+          (onChange)="onVolumeChange($event)"></npn-slider>
+        <p>Volume: <strong>{{volumeValue[0]}}</strong></p>
+      </div>
+      <div class="code-snippet">
+        <span>{{codeSnippetText}}</span>
+        <div markdown ngPreserveWhitespaces>
+```html
+&lt;npn-slider [multiRange]="false" [min]="0" [max]="100" [minSelected]="60"
+  [step]="10" (onChange)="onVolumeChange($event)"&gt;&lt;/npn-slider&gt;
+```
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. Step with Indicators -->
+  <div class="examples">
+    <h4>8. Step with Indicators (500 steps)</h4>
     <div class="well">
       <div class="well-body">
         <npn-slider [min]="1000" [max]="5000" [minSelected]="2000" [maxSelected]="4000" [step]="500"
-          [showStepIndicator]="true">
-        </npn-slider>
+          [showStepIndicator]="true" (onChange)="onStepChange($event)"></npn-slider>
+        <p>Selected: <strong>{{stepValues | json}}</strong></p>
       </div>
       <div class="code-snippet">
         <span>{{codeSnippetText}}</span>
         <div markdown ngPreserveWhitespaces>
-          ```html
-          &lt;npn-slider [min]="1000" [max]="5000"
-          [minSelected]="2000" [maxSelected]="4000"
-          [step]="500"
-          [showStepIndicator]="true"&gt;
-          &lt;/npn-slider&gt;
-          ```
+```html
+&lt;npn-slider [min]="1000" [max]="5000" [minSelected]="2000" [maxSelected]="4000"
+  [step]="500" [showStepIndicator]="true"&gt;&lt;/npn-slider&gt;
+```
         </div>
       </div>
     </div>
   </div>
+
+  <!-- 9. Single Range - Rating -->
   <div class="examples">
-    <h4>Disabled Slider</h4>
+    <h4>9. Single Range – Rating (1–10)</h4>
     <div class="well">
       <div class="well-body">
-        <npn-slider [min]="1000" [max]="5000" disabled>
-        </npn-slider>
+        <npn-slider [multiRange]="false" [min]="1" [max]="10" [minSelected]="7" [step]="1"
+          [showStepIndicator]="true" (onChange)="onRatingChange($event)"></npn-slider>
+        <p>Rating: <strong>{{ratingValue[0]}} / 10</strong></p>
       </div>
       <div class="code-snippet">
         <span>{{codeSnippetText}}</span>
         <div markdown ngPreserveWhitespaces>
-          ```html
-          &lt;npn-slider [min]="1000" [max]="5000" disabled&gt;&lt;/npn-slider&gt;
-          ```
+```html
+&lt;npn-slider [multiRange]="false" [min]="1" [max]="10" [minSelected]="7"
+  [step]="1" [showStepIndicator]="true"&gt;&lt;/npn-slider&gt;
+```
         </div>
       </div>
     </div>
   </div>
+
+  <!-- 10. Large Number Range -->
   <div class="examples">
-    <h4>Slider With No Tooltip and Values</h4>
+    <h4>10. Large Number Range (Salary: $0 – $200,000)</h4>
+    <div class="well">
+      <div class="well-body">
+        <npn-slider [min]="0" [max]="200000" [minSelected]="10000" [maxSelected]="80000" [step]="5000"
+          (onChange)="onLargeChange($event)"></npn-slider>
+        <p>Salary: <strong>${{largeValues[0] | number}} – ${{largeValues[1] | number}}</strong></p>
+      </div>
+      <div class="code-snippet">
+        <span>{{codeSnippetText}}</span>
+        <div markdown ngPreserveWhitespaces>
+```html
+&lt;npn-slider [min]="0" [max]="200000" [minSelected]="10000" [maxSelected]="80000"
+  [step]="5000"&gt;&lt;/npn-slider&gt;
+```
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11. Disabled Slider -->
+  <div class="examples">
+    <h4>11. Disabled Slider</h4>
+    <div class="well">
+      <div class="well-body">
+        <npn-slider [min]="1000" [max]="5000" [minSelected]="2000" [maxSelected]="4000" disabled></npn-slider>
+      </div>
+      <div class="code-snippet">
+        <span>{{codeSnippetText}}</span>
+        <div markdown ngPreserveWhitespaces>
+```html
+&lt;npn-slider [min]="1000" [max]="5000" disabled&gt;&lt;/npn-slider&gt;
+```
+        </div>
+      </div>
+    </div>
+    <p class="notes">Use the <code>disabled</code> attribute to prevent interaction.</p>
+  </div>
+
+  <!-- 12. Hidden Tooltip -->
+  <div class="examples">
+    <h4>12. Hidden Tooltip Slider</h4>
+    <div class="well">
+      <div class="well-body">
+        <npn-slider hide-tooltip [min]="0" [max]="100" [minSelected]="25" [maxSelected]="75"></npn-slider>
+      </div>
+      <div class="code-snippet">
+        <span>{{codeSnippetText}}</span>
+        <div markdown ngPreserveWhitespaces>
+```html
+&lt;npn-slider hide-tooltip [min]="0" [max]="100" [minSelected]="25" [maxSelected]="75"&gt;&lt;/npn-slider&gt;
+```
+        </div>
+      </div>
+    </div>
+    <p class="notes">Use <code>hide-tooltip</code> to hide the floating value tooltip.</p>
+  </div>
+
+  <!-- 13. Hidden Values -->
+  <div class="examples">
+    <h4>13. Slider With No Tooltip and No Min/Max Values</h4>
     <div class="well">
       <div class="well-body">
         <npn-slider hide-tooltip hide-values [min]="1000" [max]="1500" [minSelected]="1200" [multiRange]="false">
@@ -103,15 +270,60 @@
       <div class="code-snippet">
         <span>{{codeSnippetText}}</span>
         <div markdown ngPreserveWhitespaces>
-          ```html
-          &lt;npn-slider hide-tooltip hide-values [min]="1000" [max]="2000" [minSelected]="1200"
-          [multiRange]="false"&gt;&lt;/npn-slider&gt;
-          ```
+```html
+&lt;npn-slider hide-tooltip hide-values [min]="1000" [max]="1500" [minSelected]="1200"
+  [multiRange]="false"&gt;&lt;/npn-slider&gt;
+```
         </div>
       </div>
     </div>
   </div>
+
+  <!-- 14. Single Range - Progress -->
+  <div class="examples">
+    <h4>14. Single Range – Progress Bar Style</h4>
+    <div class="well">
+      <div class="well-body">
+        <npn-slider [multiRange]="false" [min]="0" [max]="100" [minSelected]="45" [step]="5"
+          hide-values (onChange)="onProgressChange($event)"></npn-slider>
+        <p>Progress: <strong>{{progressValue[0]}}%</strong></p>
+      </div>
+      <div class="code-snippet">
+        <span>{{codeSnippetText}}</span>
+        <div markdown ngPreserveWhitespaces>
+```html
+&lt;npn-slider [multiRange]="false" [min]="0" [max]="100" [minSelected]="45"
+  [step]="5" hide-values&gt;&lt;/npn-slider&gt;
+```
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 15. Distance Range -->
+  <div class="examples">
+    <h4>15. Distance Range (0–50 km)</h4>
+    <div class="well">
+      <div class="well-body">
+        <npn-slider [min]="0" [max]="50" [minSelected]="5" [maxSelected]="25" [step]="5"
+          [showStepIndicator]="true" (onChange)="onDistanceChange($event)"></npn-slider>
+        <p>Distance: <strong>{{distanceValues[0]}} km – {{distanceValues[1]}} km</strong></p>
+      </div>
+      <div class="code-snippet">
+        <span>{{codeSnippetText}}</span>
+        <div markdown ngPreserveWhitespaces>
+```html
+&lt;npn-slider [min]="0" [max]="50" [minSelected]="5" [maxSelected]="25"
+  [step]="5" [showStepIndicator]="true"&gt;&lt;/npn-slider&gt;
+```
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 <footer>
-Documetation for Version npn-slider-v1.3.1
+  Documentation for Version npn-slider-v1.3.1 &nbsp;|&nbsp;
+  <a href="https://github.com/ehsanshrz/rangeSlider" target="_blank">View on GitHub</a>
 </footer>
+
